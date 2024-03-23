@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>넙치 정보 입력</title>
+</head>
+<body>
+    <h1>넙치 정보 입력</h1>
+    <form action="{% url 'main_view' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="photo">넙치 사진:</label>
+            <input type="file" id="photo" name="photo" required>
+        </div>
+        <div>
+            <label for="length">체장(cm):</label>
+            <input type="number" id="length" name="length" step="0.01" required>
+        </div>
+        <div>
+            <label for="weight">체중(g):</label>
+            <input type="number" id="weight" name="weight" step="0.01" required>
+        </div>
+        <div>
+            <label for="feed_amount">먹이량(g):</label>
+            <input type="number" id="feed_amount" name="feed_amount" step="0.01" required>
+        </div>
+        <button type="submit">제출하기</button>
+    </form>
+</body>
+</html>
