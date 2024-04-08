@@ -2,9 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Manager Main</title>    
+    <title>User Management</title>
 </head>
 <body>
-    <h1>Manager Main</h1>
+    <h1>User Management</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <!-- 필요한 경우 추가 정보를 표시할 열 추가 -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <!-- 필요한 경우 추가 정보를 표시할 셀 추가 -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

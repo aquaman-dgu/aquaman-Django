@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 def login_view(request):
-    error_message = None
-    
+    error_message = None    
     # 로그인 처리
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -19,5 +19,6 @@ def login_view(request):
 
 @login_required
 def main_view(request):
-    # 유저 관리 화면 렌더링
-    return render(request, 'manager/main.html')
+    # is_staff가 False인 사용자만 필터링
+    users = User.objects.filter(is_staff=False)
+    return render(request, 'manager/main.html', {'users': users})
