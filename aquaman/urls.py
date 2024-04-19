@@ -22,4 +22,6 @@ urlpatterns = [
     path('', include('home.urls')),  # 메인 홈페이지로 이동
     path('manager/', include('manager.urls')),  # Manager 앱으로 이동    
     path('user/', include('user.urls')),  # User 앱으로 이동,
+    path('disease/', include('disease.urls')),
+    path('prediction/', include('prediction.urls')),
 ]

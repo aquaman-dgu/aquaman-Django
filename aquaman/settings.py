@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'home',
     'manager',
     'user',
+    'disease',
+    'prediction'
 ]
 
 MIDDLEWARE = [

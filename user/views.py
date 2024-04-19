@@ -5,7 +5,11 @@ from .forms import CustomUserCreationForm
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('user:main')
+    
     error_message = None
+    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')

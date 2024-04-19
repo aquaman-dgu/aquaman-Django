@@ -4,7 +4,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 def login_view(request):
-    error_message = None    
+    if request.user.is_authenticated and request.user.is_staff:
+        return redirect('manager:main')
+    
+    error_message = None
+    
     # 로그인 처리
     if request.method == 'POST':
         username = request.POST.get('username')

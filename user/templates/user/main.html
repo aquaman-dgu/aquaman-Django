@@ -2,9 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Main</title>    
+    <title>User Main</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #007bff;
+        }
+        .buttons {
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 0 20px;
+            cursor: pointer;
+        }
+        button.logout {
+            padding: 8px 16px;
+            margin-top: 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button.logout:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+
 </head>
 <body>
     <h1>User Main</h1>
+    <div class="buttons">
+        <!-- Manager 앱 페이지로 이동하는 버튼 -->
+        <a href="{% url 'disease:main' %}"><button>disease</button></a>
+        <!-- User 앱 페이지로 이동하는 버튼 -->
+        <a href="{% url 'prediction:main' %}"><button>prediction</button></a>
+    </div>
+    
+    <form action="{% url 'user:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="logout">Log Out</button>
+    </form>
+
 </body>
 </html>
