@@ -40,16 +40,17 @@
 <body>
     <h1>User Main</h1>
     <div class="buttons">
+        <!-- Home Button -->
+        <button class="home-button" onclick="window.location.href='{% url 'home' %}'">Home</button>
         <!-- Manager 앱 페이지로 이동하는 버튼 -->
         <a href="{% url 'disease:main' %}"><button>disease</button></a>
         <!-- User 앱 페이지로 이동하는 버튼 -->
         <a href="{% url 'prediction:main' %}"><button>prediction</button></a>
     </div>
-    
+  
     <form action="{% url 'user:logout' %}" method="post">
         {% csrf_token %}
         <button type="submit" class="logout">Log Out</button>
     </form>
-
 </body>
 </html>

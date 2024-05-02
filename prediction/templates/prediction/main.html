@@ -22,6 +22,19 @@
 <body>
     <h1>Prediction Main</h1>
 
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="length">Length:</label>
+            <input type="text" id="length" name="length" required>
+        </div>
+        <div>
+            <label for="weight">Weight:</label>
+            <input type="text" id="weight" name="weight" required>
+        </div>
+        <button type="submit">Predict</button>
+    </form>
+
     <form action="{% url 'user:logout' %}" method="post">
         {% csrf_token %}
         <button type="submit" class="logout">Log Out</button>

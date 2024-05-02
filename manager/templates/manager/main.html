@@ -39,6 +39,9 @@
         </tbody>
     </table>
 
+    <!-- Home Button -->
+    <button class="home-button" onclick="window.location.href='{% url 'home' %}'">Home</button>
+
     <form action="{% url 'manager:logout' %}" method="post">
         {% csrf_token %}
         <button type="submit" class="logout">Log Out</button>
