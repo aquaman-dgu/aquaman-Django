@@ -1,6 +1,9 @@
 from django.urls import path
-from recognition import views
+from . import views
+
+app_name = 'recognition'
 
 urlpatterns = [
-    path('', views.recognition_view, name='recognition_view'),  # 'recognition' 앱의 메인 페이지에 대한 URL
+    path('main/', views.main_view, name='main'),
+    path('result/', views.result_view, name='result'),
 ]

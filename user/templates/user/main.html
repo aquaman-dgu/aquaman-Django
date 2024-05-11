@@ -42,9 +42,11 @@
     <div class="buttons">
         <!-- Home Button -->
         <button class="home-button" onclick="window.location.href='{% url 'home' %}'">Home</button>
-        <!-- Manager 앱 페이지로 이동하는 버튼 -->
+
+        <a href="{% url 'recognition:main' %}"><button>recognition</button></a>
+
         <a href="{% url 'disease:main' %}"><button>disease</button></a>
-        <!-- User 앱 페이지로 이동하는 버튼 -->
+
         <a href="{% url 'prediction:main' %}"><button>prediction</button></a>
     </div>
   
