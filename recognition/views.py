@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from PIL import Image
 
-# YOLOv8 모델 로드 함수
 def load_model(model_path):
     model = torch.load(model_path, map_location=torch.device('cpu'))  # 직접 모델 파일을 로드
     model.eval()
