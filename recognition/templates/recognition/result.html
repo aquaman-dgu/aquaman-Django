@@ -6,15 +6,7 @@
 </head>
 <body>
     <h1>Recognition and Disease Detection Results</h1>
-    {% if disease_results %}
-        <ul>
-            {% for result in disease_results %}
-            <li>{{ result }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No results to display.</p>
-    {% endif %}
-    <a href="{% url 'recognition:main' %}">Try another image</a>
+   
+    
 </body>
 </html>

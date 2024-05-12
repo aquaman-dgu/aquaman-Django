@@ -1,40 +1,36 @@
-import torch
+import os
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
+from django.conf import settings
 from PIL import Image
+from ultralytics import YOLO
 
-def load_model(model_path):
-    model = torch.load(model_path, map_location=torch.device('cpu'))  # 직접 모델 파일을 로드
-    model.eval()
-    return model
-
-# 모델 인스턴스 생성
-recognition_model = load_model('recognition/model/recognition.pt')
-disease_model = load_model('recognition/model/disease.pt')
+recognition_model = YOLO('recognition/model/recognition.pt')
+disease_model = YOLO('recognition/model/disease.pt')
 
 def main_view(request):
     if request.method == 'POST' and request.FILES['image']:
-        image = request.FILES['image']
+        image_file = request.FILES['image']
         fs = FileSystemStorage()
-        filename = fs.save(image.name, image)
+        filename = fs.save(image_file.name, image_file)
+        
+        # 파일의 실제 시스템 경로를 가져옵니다
         image_path = fs.path(filename)
 
-        # 이미지 처리 및 객체 인식
-        img = Image.open(image_path)
-        results = recognition_model(img)
-
-        # 각 자른 이미지를 disease 모델로 처리
-        disease_results = []
-        for crop_img in results:
-            result = disease_model(crop_img)
-            disease_results.append(result)
-
-        # 결과 페이지로 리다이렉트
-        request.session['disease_results'] = disease_results
-        return redirect('recognition:result_view')
-
+        # Recognition 모델을 사용하여 이미지에서 객체를 인식
+        result = recognition_model.predict(image_path, save = True, retina_masks=True, imgsz = 640, 
+                               conf=0.2, save_crop=True, project=os.getcwd())
+        
+        image_directory = 'predict/crops/넙치'
+        
+        for filename in os.listdir(image_directory):
+            if filename.endswith('.jpg') or filename.endswith('.png'):  # 이미지 파일 확인
+                file_path = os.path.join(image_directory, filename)  # 파일의 전체 경로
+                
+                result = disease_model.predict(file_path, save = True, retina_masks=True, imgsz = 640, 
+                               conf=0.3, project=os.getcwd() + '/results')
+        return redirect('recognition:result')
     return render(request, 'recognition/main.html')
 
 def result_view(request):
-    disease_results = request.session.get('disease_results', [])
-    return render(request, 'recognition/result.html', {'disease_results': disease_results})
+    return render(request, 'recognition/result.html')
