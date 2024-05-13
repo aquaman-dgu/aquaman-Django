@@ -5,8 +5,11 @@
     <title>Recognition Results</title>
 </head>
 <body>
-    <h1>Recognition and Disease Detection Results</h1>
-   
-    
+    <h1>Recognition Results</h1>
+    <div>
+        {% for image_url in image_urls %}
+            <img src="{{ image_url }}" alt="Recognition Result Image" style="width: 200px; height: auto;">
+        {% endfor %}
+    </div>
 </body>
 </html>

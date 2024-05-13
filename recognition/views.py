@@ -1,36 +1,64 @@
-import os
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
-from django.conf import settings
-from PIL import Image
+from django.contrib.auth.decorators import login_required
 from ultralytics import YOLO
+from PIL import Image
+import os
+import shutil
 
 recognition_model = YOLO('recognition/model/recognition.pt')
 disease_model = YOLO('recognition/model/disease.pt')
 
+@login_required
 def main_view(request):
+    #이미지 입력 응답이 들어오면
     if request.method == 'POST' and request.FILES['image']:
+        
+        #기존 disease 결과 이미지 제거
+        image_files = [f for f in os.listdir(os.getcwd()) if f.endswith(('.png', '.jpg', '.jpeg'))]
+        for dfile_name in image_files:
+            os.remove(dfile_name)
+        
         image_file = request.FILES['image']
         fs = FileSystemStorage()
-        filename = fs.save(image_file.name, image_file)
+        rfilename = fs.save(image_file.name, image_file)
+        image_path = fs.path(rfilename)
+        source = Image.open(image_path)
         
-        # 파일의 실제 시스템 경로를 가져옵니다
-        image_path = fs.path(filename)
-
-        # Recognition 모델을 사용하여 이미지에서 객체를 인식
-        result = recognition_model.predict(image_path, save = True, retina_masks=True, imgsz = 640, 
-                               conf=0.2, save_crop=True, project=os.getcwd())
+        #recognition 모델
+        results = recognition_model(source)
         
-        image_directory = 'predict/crops/넙치'
+        recognition_directory = '넙치'
         
-        for filename in os.listdir(image_directory):
+        #recognition 모델 결과 저장
+        for result in results:
+            result.save_crop(save_dir = os.getcwd())
+        
+        for filename in os.listdir(recognition_directory):
             if filename.endswith('.jpg') or filename.endswith('.png'):  # 이미지 파일 확인
-                file_path = os.path.join(image_directory, filename)  # 파일의 전체 경로
+                image_path = os.path.join(recognition_directory, filename)  # 파일의 전체 경로
+                source = Image.open(image_path)
                 
-                result = disease_model.predict(file_path, save = True, retina_masks=True, imgsz = 640, 
-                               conf=0.3, project=os.getcwd() + '/results')
+                #disease 모델
+                results = disease_model(source)
+                
+                #diease 모델 결과 저장
+                for result in results:
+                    result.save()
+                    
+        #recognition 모델 결과 폴더 제거
+        shutil.rmtree(recognition_directory)
+        os.remove(rfilename)
+        
         return redirect('recognition:result')
     return render(request, 'recognition/main.html')
 
+@login_required
 def result_view(request):
-    return render(request, 'recognition/result.html')
+    # 해당 디렉토리 내의 모든 이미지 파일 리스트
+    image_files = [f for f in os.listdir(os.getcwd()) if f.endswith(('.png', '.jpg', '.jpeg'))]
+
+    # 이미지 파일의 URL 리스트 생성
+    image_urls = [os.path.join('/static', file_name) for file_name in image_files]
+
+    return render(request, 'recognition/result.html', {'image_urls': image_urls})
