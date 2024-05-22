@@ -1,0 +1,9 @@
+Hoin_DLinear_custom_ftMS_sl5_ll0_pl1_dm128_nh16_el3_dlNone_df256_fcNone_ebNone_dtNone_Exp_0  
+mse:67.74658966064453, mae:8.230480194091797, rse:0.5067431330680847
+
+Hoin_DLinear_custom_ftMS_sl5_ll0_pl1_dm128_nh16_el3_dlNone_df256_fcNone_ebNone_dtNone_Exp_0  
+mse:67.74658966064453, mae:8.230480194091797, rse:0.5067431330680847
+
+Hoin_DLinear_custom_ftMS_sl5_ll0_pl1_dm128_nh16_el3_dlNone_df256_fcNone_ebNone_dtNone_Exp_0  
+mse:0.002621155232191086, mae:0.04940241202712059, rse:0.017808953300118446
+

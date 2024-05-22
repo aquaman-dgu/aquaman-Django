@@ -5,4 +5,6 @@ app_name = 'disease'
 
 urlpatterns = [
     path('main/', views.main_view, name='main'),
+    path('upload_csv/', views.main_view, name='upload_csv'),
+    path('result/', views.result_view, name='result'),
 ]
