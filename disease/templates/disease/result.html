@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>예측 결과</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .result-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 400px;
+            margin: auto;
+        }
+        .result-container h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .result-container p {
+            font-size: 1.2em;
+            color: #555;
+        }
+        .result-container a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .result-container a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h2>예측 결과</h2>
+        <p><strong>위험도:</strong> {{ label }} </p>
+        <p><strong>확률:</strong> {{ probability }} %</p>
+        <a href="{% url 'disease:main' %}">예측 폼으로 돌아가기</a>
+    </div>
+</body>
+</html>

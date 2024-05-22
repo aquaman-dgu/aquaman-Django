@@ -1,31 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Disease Main</title>
+    <title>Main Page</title>
     <style>
-        button.logout {
-            padding: 8px 16px;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .table-container {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button-container {
             margin-top: 20px;
-            background-color: #f44336;
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        .button-container button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
         }
-        button.logout:hover {
-            background-color: #d32f2f;
+        .button-container button:hover {
+            background-color: #0056b3;
         }
     </style>
-
 </head>
 <body>
-    <h1>Disease Main</h1>
-
-    <form action="{% url 'user:logout' %}" method="post">
+    <h2>CSV 업로드</h2>
+    <form id="upload-form" action="{% url 'disease:upload_csv' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <button type="submit" class="logout">Log Out</button>
+        <input type="file" id="csv-file" name="csv_file" accept=".csv">
+        <span id="file-name"></span>
+        <button type="submit">업로드</button>
     </form>
+    <div class="button-container">
+        <form id="predict-form" action="{% url 'disease:result' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">예측</button>
+        </form>
+    </div>
 
+    <script>
+        let dateCounter = 0;
+
+        function addRow() {
+            var table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+            newRow.innerHTML = '<td><input type="number" name="date" value="' + (++dateCounter) + '"></td><td><input type="number" step="0.01" name="length"></td><td><input type="number" step="0.01" name="weight"></td><td><input type="number" step="0.01" name="feed"></td>';
+        }
+
+        // 예측 폼 제출 시 CSV 업로드 폼도 제출
+        document.getElementById('predict-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('upload-form').submit();
+        });
+    </script>
 </body>
 </html>

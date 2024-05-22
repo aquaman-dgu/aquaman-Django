@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Prediction Result</title>
+    <title>예측 결과</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -39,9 +39,10 @@
 </head>
 <body>
     <div class="result-container">
-        <h2>Prediction Result</h2>
-        <p><strong>Prediction:</strong> {{ prediction }}</p>
-        <a href="{% url 'predict_view' %}">Back to Prediction Form</a>
+        <h2>예측 결과</h2>
+        <p><strong>길이:</strong> {{ length }} mm</p>
+        <p><strong>무게:</strong> {{ weight }} g</p>
+        <a href="{% url 'prediction:main' %}">예측 폼으로 돌아가기</a>
     </div>
 </body>
 </html>
