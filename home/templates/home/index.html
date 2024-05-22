@@ -3,35 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aquaman</title>
+    <title>AQUAMAN</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
+            margin: 0;
+            padding: 0;
         }
-        h1 {
-            font-size: 2.5rem;
-            color: #007bff;
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px 0;
+            color: #ffffff;
+            position: relative;
         }
-        .buttons {
+        .header h1 {
+            margin-bottom: 20px;
+            color: black;
+            font-size: 125px;
+            font-weight: 900;
+            position: relative;
+        }
+        .header img {
+            vertical-align: middle;
+            width: 450px;
+            height: auto;
+        }
+        .header .logo-container {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .header .logo-container img {
+            margin-left: 40px;
             margin-top: 50px;
         }
-        button {
+
+        .header .line-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header .line {
+            width: 80%;
+            height: 1px;
+            background-color: black;
+            margin: 40px 0;
+        }
+        .header .managertext {
+            width: 230px;
+            height: auto;
+            margin: 100px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .header .usertext {
+            width: 180px;
+            height: auto;
+            margin: 100px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            position: relative;
+        }
+        .button {
+            display: inline-block;
+            margin: 0 10px;
             padding: 10px 20px;
-            font-size: 1rem;
-            margin: 0 20px;
-            cursor: pointer;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .button:hover img {
+            transform: scale(1.1);
+        }
+
+        .footer-line-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .footer-line {
+            width: 80%;
+            height: 0.5px;
+            background-color: black;
         }
     </style>
 </head>
 <body>
-    <h1>Aquaman</h1>
-    <div class="buttons">
-        <!-- Manager 앱 페이지로 이동하는 버튼 -->
-        <a href="{% url 'manager:login' %}"><button>Manager</button></a>
-        <!-- User 앱 페이지로 이동하는 버튼 -->
-        <a href="{% url 'user:login' %}"><button>User</button></a>
+<div class="header">
+    <div class="logo-container">
+        <h1>AQUAMAN</h1>
+        <img src="/static/img/넙치.png" alt="Aquaman Logo">
     </div>
+    <div class="line-container">
+        <div class="line"></div>
+    </div>
+    <div class="button-container">
+        <a href="{% url 'manager:login' %}" class="button">
+            <img src="/static/img/managertext.png" alt="Manager" class="managertext button-icon">
+            Manager
+        </a>
+        <a href="{% url 'user:login' %}" class="button">
+            <img src="/static/img/usertext.png" alt="User" class="usertext button-icon">
+            User
+        </a>
+    </div>
+</div>
+<div class="footer-line-container">
+    <div class="footer-line"></div>
+</div>
 </body>
 </html>

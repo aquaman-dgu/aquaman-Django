@@ -2,11 +2,107 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Signup Successful</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUpPage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .image-container {
+            flex: 1;
+            background-image: url('/static/img/넙치누끼.png'); /* 이미지 경로 설정 */
+            background-size: 500px; /* 이미지가 컨테이너에 맞게 비율을 유지하며 축소됨 */
+            background-position: center;
+            background-repeat: no-repeat; /* 이미지 반복 없음 */
+        }
+        .form-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .signup-form {
+            background-color: #f9f9f9; /* 회원가입 폼의 배경색 */
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px; /* 폼의 최대 너비 */
+            width: 100%; /* 폼의 너비를 100%로 설정 */
+        }
+        .signup-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .signup-form p {
+            text-align: center;
+            color: gray;
+        }
+        .signup-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .signup-form input[type="text"],
+        .signup-form input[type="email"],
+        .signup-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .signup-form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff; /* 회원가입 버튼 색상 */
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .signup-form input[type="submit"]:hover {
+            background-color: #0056b3; /* 호버 시 버튼 색상 변경 */
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-2 {
+            margin-top: 10px;
+        }
+        .btn-link {
+            background-color: transparent;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+        }
+        .btn-link:hover {
+            color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h1>Signup Successful!</h1>
-    <p>Your account has been successfully created.</p>
-    <a href="{% url 'user:login' %}">Click here to login</a>
+<div class="container">
+    <div class="image-container"></div>
+    <div class="form-container">
+        <div class="signup-form">
+            <div style="text-align: center;">
+                <img src="/static/img/넙치.png" alt="넙치 로고" width="100">
+            </div>
+            <h1>Sign Up Success!</h1>
+            Your account has been successfully created.
+            <p></p>
+            <a href="{% url 'user:login' %}">Click here to login</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
