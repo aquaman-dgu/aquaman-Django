@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import CustomUserCreationForm
 
@@ -21,6 +21,10 @@ def login_view(request):
             error_message = "Invalid username or password"
     return render(request, 'user/login.html', {'error_message' : error_message})
 
+def logout_view(request):
+    logout(request)
+    return redirect('user:login')  # 로그인 페이지 또는 홈 페이지로 리디렉트
+
 def signup_view(request):
     # 유저 회원가입 처리
     if request.method == 'POST':
@@ -41,4 +45,4 @@ def signup_success(request):
 @login_required
 def main_view(request):
     # 유저 메인 화면 렌더링
-    return render(request, 'user/main.html')
+    return redirect('recognition:main')

@@ -107,12 +107,7 @@
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" placeholder="Password" required>
 
-                <div class="form-check">
-                    <input type="checkbox" id="remember_me" name="remember_me">
-                    <label for="remember_me" style="display: inline-block;">Keep me logged in</label>
-                </div>
-
-                <input type="submit" value="Sign in">
+                <input type="submit" value="Log in">
 
                 <p class="text-center mt-2">Don't have an account yet? <button type="button" class="btn-link" onclick="window.location.href='{% url 'user:signup' %}'">Sign up</button></p>
 
@@ -120,7 +115,7 @@
                 <input type="submit" onclick="window.location.href='{% url 'home' %}'" value = "Home">
 
                 {% if error_message %}
-                <p class="text-danger">{{ error_message }}</p>
+                <p>{{ error_message }}</p>
                 {% endif %}
             </form>
         </div>

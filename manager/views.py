@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -21,8 +21,16 @@ def login_view(request):
             error_message = "Invalid username or password"
     return render(request, 'manager/login.html', {'error_message' : error_message})
 
+def logout_view(request):
+    logout(request)
+    return redirect('manager:login')  # 로그인 페이지 또는 홈 페이지로 리디렉트
+
 @login_required
-def main_view(request):
-    # is_staff가 False인 사용자만 필터링
-    users = User.objects.filter(is_staff=False)
+def main_view(request):    
+    query = request.GET.get('q', '')  # 검색창에서 입력받은 값을 가져옵니다.
+    if query:
+        users = User.objects.filter(is_staff=False, username__icontains=query)  # 대소문자 구분 없이 검색
+    else:
+        users = User.objects.filter(is_staff=False)  # 검색창이 비어있을 때 모든 사용자를 표시
+    
     return render(request, 'manager/main.html', {'users': users})
