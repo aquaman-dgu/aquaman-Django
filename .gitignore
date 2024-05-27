@@ -3,4 +3,9 @@ model/
 predict/
 results/
 *.jpg
+<<<<<<< HEAD
 *.png
+=======
+*.png
+
+>>>>>>> ec444efff51e953279b39a478173cda33570f6e2
