@@ -12,7 +12,7 @@
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 5px;
-            max-width: 400px;
+            max-width: 600px;
             margin: auto;
         }
         .result-container h2 {
@@ -35,6 +35,13 @@
         .result-container a:hover {
             background-color: #0056b3;
         }
+        .result-container img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -42,6 +49,7 @@
         <h2>예측 결과</h2>
         <p><strong>길이:</strong> {{ length }} mm</p>
         <p><strong>무게:</strong> {{ weight }} g</p>
+        <img src="data:image/png;base64,{{ graph }}" alt="Prediction Graph">
         <a href="{% url 'prediction:main' %}">예측 폼으로 돌아가기</a>
     </div>
 </body>
