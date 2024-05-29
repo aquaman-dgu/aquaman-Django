@@ -3,7 +3,7 @@ predict/
 results/
 media/
 PatchTST/
+
 static/*
 !static/img/
-*.pt
 
