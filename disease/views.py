@@ -52,7 +52,7 @@ def main_view(request):
 def result_view(request):
     file_path = request.session.get('csv_file_path')
     csv_file_name = request.session.get('csv_file_name')
-
+    
     if not file_path or not csv_file_name:
         print("Missing file path or file name in session.")
         return redirect('disease:main')

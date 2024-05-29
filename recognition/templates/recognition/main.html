@@ -152,28 +152,28 @@
         <li>
             <a href="{% url 'recognition:main' %}" class="nav-link text-black">
                 <i class="bi bi-eye"></i>
-                <span class="ms-1">Disease Detection</span>
+                <span class="ms-1">질병 감지</span>
             </a>
         </li>
         <br>
         <li>
             <a href="{% url 'disease:main' %}" class="nav-link text-black">
                 <i class="bi bi-bar-chart-line"></i>
-                <span class="ms-1">Disease Prediction</span>
+                <span class="ms-1">질병 예측</span>
             </a>
         </li>
         <br>
         <li>
             <a href="{% url 'prediction:main' %}" class="nav-link text-black">
                 <i class="bi bi-arrow-up-right-circle"></i>
-                <span class="ms-1">Growth Prediction</span>
+                <span class="ms-1">성장 예측</span>
             </a>
         </li>
         <br>
         <li>
             <a href="#" class="nav-link text-black">
                 <i class="bi bi-card-checklist"></i>
-                <span class="ms-1">Previous Records</span>
+                <span class="ms-1">이전 기록</span>
             </a>
         </li>
     </ul>
@@ -192,7 +192,9 @@
 
 <div class="content-container">
     <div class="table-container">
-        <h2><b>Disease Detection</b></h2>
+        <h2><b>질병 감지</b></h2>
+        <br>
+        <h4><b>이미지 업로드</b></h4>
         <br>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -200,7 +202,7 @@
             <br><br>
             <input type="file" name="image" id="fish-image" accept="image/*" required>
             <div class="update-button-container">
-                <button type="submit" class="btn btn-primary" id="update-button">Update</button>
+                <button type="submit" class="btn btn-primary" id="update-button">업로드</button>
             </div>
         </form>
     </div>

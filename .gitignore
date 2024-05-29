@@ -1,11 +1,9 @@
 model/
-*.pt
 predict/
 results/
-*.jpg
-<<<<<<< HEAD
-*.png
-=======
-*.png
+media/
+PatchTST/
+static/*
+!static/img/
+*.pt
 
->>>>>>> ec444efff51e953279b39a478173cda33570f6e2

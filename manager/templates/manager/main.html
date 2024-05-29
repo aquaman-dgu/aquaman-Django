@@ -150,16 +150,16 @@
     <br>
     <div class="table-container">
         <table class="table">
-            <h4><b>Member Management</b></h4>
+            <h4><b>멤버 관리</b></h4>
 
             <div class="update-button-container">
-                <button class="btn btn-primary" id="update-button">Update</button>
+                <button class="btn btn-primary" id="update-button" onclick="window.location.href='{% url 'manager:main' %}'">Refresh</button>
             </div>
 
             <br>
             <thead>
             <tr>
-                <th>Name</th>
+                <th>이름</th>
                 <th>E-mail</th>
             </tr>
             </thead>
